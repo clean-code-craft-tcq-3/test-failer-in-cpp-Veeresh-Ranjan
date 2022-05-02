@@ -1,22 +1,34 @@
-#include <iostream>
-#include <assert.h>
+#include "misAlignedCode.h"
+#include "misAlignedCheck.h"
+#include "ColorCodePairCheck.h"
 
-int printColorMap() {
-    const char* majorColor[] = {"White", "Red", "Black", "Yellow", "Violet"};
-    const char* minorColor[] = {"Blue", "Orange", "Green", "Brown", "Slate"};
-    int i = 0, j = 0;
-    for(i = 0; i < 5; i++) {
-        for(j = 0; j < 5; j++) {
-            std::cout << i * 5 + j << " | " << majorColor[i] << " | " << minorColor[i] << "\n";
-        }
-    }
-    return i * j;
+vector <string> getArrayOfStringLines(){
+    stringstream stringstream_buffer;
+    printColorMap(stringstream_buffer);
+    vector <string> arrayOfStringLines;
+    string line;
+    do{
+        getline(stringstream_buffer,line,'\n');
+        arrayOfStringLines.push_back(line);
+    }while(stringstream_buffer.str().find('\n') != string::npos && line != "");
+    return arrayOfStringLines;
+}
+
+void testCode(){
+    vector <string> arrayOfStringLines;
+    arrayOfStringLines = getArrayOfStringLines();
+    assert(getPairNumber(arrayOfStringLines.at(0))=="1");
+    assert(getMajorColor(arrayOfStringLines.at(10))=="Black");
+    assert(getMinorColor(arrayOfStringLines.at(10))=="Blue");
+    assert(checkAlignment(arrayOfStringLines) == true);
+
 }
 
 int main() {
-    int result = printColorMap();
-    assert(result == 0);
-    std::cout << "All is well (maybe!)\n";
+    int result = printColorMap(cout);
+    assert(result == 25);
+    testCode();
+    cout << "All is well (maybe!)\n";
     return 0;
 }
 
