@@ -1,15 +1,12 @@
 string getPairNumber(string stringToBeChecked){
-    cout<<stringToBeChecked<<endl;
     istringstream wordString(stringToBeChecked);
     string word;
     if(wordString>>word){
-        cout<<word<<endl;
         return word;
     }
     return "";
 }
 string getMajorColor(string stringToBeChecked){
-    cout<<stringToBeChecked<<endl;
     istringstream wordString(stringToBeChecked);
     string word;
     while(wordString>>word){
@@ -20,7 +17,6 @@ string getMajorColor(string stringToBeChecked){
     return "";
 }
 string getMinorColor(string stringToBeChecked){
-    cout<<stringToBeChecked<<endl;
     istringstream wordString(stringToBeChecked);
     string word;
     while(wordString>>word){
