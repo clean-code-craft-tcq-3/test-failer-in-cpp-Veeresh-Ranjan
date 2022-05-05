@@ -14,12 +14,15 @@ void setEnvironment(CodeEnvironment env){
     if (env == Test) alerterPointer = &networkAlertStub;
     else alerterPointer = &networkAlert;
 }
+
+float getFarenheitToCelcius(float farenheit){
+    return ((farenheit - 32) * 5 / 9);
+}
+
 void alertInCelcius(float farenheit) {
-    float celcius = (farenheit - 32) * 5 / 9;
+    float celcius = getFarenheitToCelcius(farenheit);
     int returnCode = alerterPointer(celcius);
     if (returnCode != OK) {
-        // non-ok response is not an error! Issues happen in life! let us keep a count of failures to report
-        // However, this code doesn't count failures! Add a test below to catch this bug. Alter the stub above, if needed.
         alertFailureCount += 1;
         }
 }

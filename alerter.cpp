@@ -7,6 +7,10 @@ void test_alerter(){
     assert(alertFailureCount == 0);
     alertInCelcius(400.5);
     assert(alertFailureCount == 1);
+    alertInCelcius(900.5);
+    assert(alertFailureCount == 2);
+    alertInCelcius(105.5);
+    assert(alertFailureCount == 2);
 }
 
 int main() {
